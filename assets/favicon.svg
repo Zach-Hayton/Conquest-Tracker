@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Conquest Tracker icon">
+  <rect width="64" height="64" rx="16" fill="#071521"/>
+  <path d="M14 39c5-17 18-23 36-20-2 18-10 30-28 31 3-5 8-9 16-14-9 2-16 7-24 3Z" fill="#2dd4bf"/>
+  <circle cx="22" cy="23" r="4" fill="#fbbf24"/>
+  <circle cx="43" cy="34" r="4" fill="#fb7185"/>
+</svg>
