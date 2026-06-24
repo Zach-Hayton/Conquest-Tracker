@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#071521" />
+    <meta
+      name="description"
+      content="A local-first strategy board game tracker with setup flow, live turn tracking, and battle probability estimates."
+    />
+    <title>Conquest Tracker</title>
+    <meta property="og:title" content="Conquest Tracker" />
+    <meta property="og:description" content="A local-first strategy board game tracker with live turn tracking, setup flow, and battle probability estimates." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="./assets/social-preview.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">CX</div>
+          <div>
+            <p class="eyebrow">World conquest companion</p>
+            <h1>Conquest Tracker</h1>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button id="toggle-odds" class="button odds-toggle" type="button" aria-pressed="false">
+            Show reach odds
+          </button>
+          <button id="reset-game" class="button button-danger" type="button">New game</button>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="map-panel" aria-labelledby="phase-title">
+          <div class="map-toolbar">
+            <div>
+              <div id="status-pill" class="status-pill">Setup</div>
+              <h2 id="phase-title">Build your table</h2>
+              <p id="selection-hint">Add players, choose colors, and set the turn order.</p>
+            </div>
+            <div id="active-player-banner" class="active-player-banner hidden"></div>
+          </div>
+
+          <div id="map-wrap" class="map-wrap"></div>
+          <div id="continent-legend" class="continent-legend" aria-label="Continent legend"></div>
+        </section>
+
+        <aside class="side-panel">
+          <section class="card" id="setup-card">
+            <div class="card-heading">
+              <div>
+                <p class="card-kicker">Step 1</p>
+                <h2>Players & turn order</h2>
+              </div>
+              <span id="setup-count-label" class="count-badge">3 players</span>
+            </div>
+
+            <div class="setup-grid">
+              <label>
+                Number of players
+                <select id="player-count">
+                  <option value="2">2</option>
+                  <option value="3" selected>3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                </select>
+              </label>
+              <label>
+                Starting troops each
+                <input id="starting-troops" type="number" min="14" max="999" value="35" />
+              </label>
+            </div>
+
+            <p id="troop-help" class="field-help">Minimum 14 troops each with 3 players.</p>
+            <div id="player-editor" class="player-editor"></div>
+            <button id="start-setup" class="button button-primary button-full" type="button">
+              Begin territory draft
+            </button>
+          </section>
+
+          <section class="card hidden" id="progress-card">
+            <div class="card-heading">
+              <div>
+                <p class="card-kicker">Live setup</p>
+                <h2>Player progress</h2>
+              </div>
+              <span id="territory-progress" class="count-badge">0 / 42</span>
+            </div>
+            <div id="player-progress" class="player-progress"></div>
+          </section>
+
+          <section class="card hidden" id="action-card">
+            <div class="card-heading">
+              <div>
+                <p class="card-kicker" id="action-kicker">Current turn</p>
+                <h2 id="action-title">Turn actions</h2>
+              </div>
+              <button id="undo-action" class="text-button" type="button">Undo</button>
+            </div>
+            <div id="action-panel"></div>
+          </section>
+
+          <section class="card" id="territory-card">
+            <div class="card-heading">
+              <div>
+                <p class="card-kicker">Map details</p>
+                <h2>Selected territory</h2>
+              </div>
+            </div>
+            <div id="territory-details" class="territory-details muted">
+              Select a territory to inspect it.
+            </div>
+          </section>
+
+          <section class="card compact-card">
+            <div class="card-heading">
+              <div>
+                <p class="card-kicker">Continents</p>
+                <h2>Control overview</h2>
+              </div>
+            </div>
+            <div id="continent-list" class="continent-list"></div>
+          </section>
+
+          <section class="card compact-card hidden" id="history-card">
+            <div class="card-heading">
+              <div>
+                <p class="card-kicker">Recent activity</p>
+                <h2>Game history</h2>
+              </div>
+            </div>
+            <div id="game-history" class="game-history"></div>
+          </section>
+        </aside>
+      </main>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
